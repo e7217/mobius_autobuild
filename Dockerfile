@@ -1,0 +1,17 @@
+FROM ubuntu:16.04 
+MAINTAINER e7217@naver.com 
+RUN apt-get update && apt-get install git curl nano net-tools mosquitto mosquitto-clients -y \
+    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && apt-get install nodejs -y \
+    && git clone https://github.com/IoTKETI/Mobius \
+    && cd Mobius && npm i npm@latest -g && npm install && npm audit fix
+
+EXPOSE 7577 
+EXPOSE 7578 
+EXPOSE 7582 
+EXPOSE 8883 
+EXPOSE 1883
+
+##$ sudo docker run -it --rm ---link=moibusdb p 7577:7577 -p 7578:7578 -p 7582:7582 -p 8883:8883 -p 1883:1883 -net=host e7217/mobius:0.1
+
+##with mysql images $ docker run --rm --name=mobiusdb -e MYSQL_ROOT_PASSWORD=(p/w) mysql:latest
