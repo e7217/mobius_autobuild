@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install git curl nano net-tools mosquitto mosquitt
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install nodejs -y \
     && git clone https://github.com/IoTKETI/Mobius \
-    && cd Mobius && npm i npm@latest -g && npm install && npm audit fix
+    && cd Mobius && npm i npm@latest -g && npm install && npm audit fix && npm install pm2 -g
 
 EXPOSE 7577 
 EXPOSE 7578 
